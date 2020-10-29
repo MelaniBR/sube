@@ -10,13 +10,13 @@ public class Sube {
     @Column(name = "id")
     private int id;
     @Column(name="balance")
-    private double balance ;
+    private BigDecimal balance ;
     @Column(name="name")
     private String name ;
     @Column(name="last_Name")
     private String lastName ;
 
-    public Sube(int id, double balance, String lastName, String name) {
+    public Sube(int id, BigDecimal balance, String lastName, String name) {
         this.id = id;
         this.balance = balance;
         this.lastName = lastName;
@@ -27,8 +27,8 @@ public class Sube {
 
     }
 
-    public void addFounds(double newBalance) {
-        balance =+ newBalance;
+    public void addFounds(BigDecimal newBalance) {
+        balance= balance.add(newBalance);
     }
     public String getName(){
         return  name;
@@ -39,7 +39,7 @@ public class Sube {
     public int getId(){
         return id;
     }
-    public double getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 }
