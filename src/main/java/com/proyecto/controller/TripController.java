@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class TripController {
     @Autowired
@@ -15,7 +17,7 @@ public class TripController {
 
 
     @GetMapping("/trip/{id}")
-    Trip get(@PathVariable Integer id ){
+    List<Trip> get(@PathVariable Integer id ){
 
         return tripService.getTripByIdSube(id);
     }
