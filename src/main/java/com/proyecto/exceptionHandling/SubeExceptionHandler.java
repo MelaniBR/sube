@@ -10,12 +10,12 @@ import java.time.LocalDateTime;
 
 @ControllerAdvice
 public class SubeExceptionHandler {
-    ModelAndView response = new ModelAndView("error");
+
     
     @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<ModelAndView> runtimeException(RuntimeException e) {
-
-        return new ResponseEntity<ModelAndView>(response, HttpStatus.BAD_REQUEST);
+    public ResponseEntity<Response> runtimeException(RuntimeException e) {
+        Response result = new Response(LocalDateTime.now(), "[Exception Response] - Exception: " + e.getMessage(), 500, "Error");
+        return new ResponseEntity<Response>(result, HttpStatus.BAD_REQUEST);
     }
 
 
