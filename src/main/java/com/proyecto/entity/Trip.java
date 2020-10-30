@@ -16,6 +16,7 @@ public class Trip {
     private LocalDateTime date;
     @Id
     @Column(name = "id")
+    
     private String id;
 
     public int getSubeId() {

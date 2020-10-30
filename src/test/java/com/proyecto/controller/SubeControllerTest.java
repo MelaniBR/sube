@@ -1,29 +1,86 @@
 package com.proyecto.controller;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.proyecto.entity.Sube;
+import com.proyecto.service.SubeService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
-@WebMvcTest(controllers = SubeController.class)
 @SpringBootTest
+@AutoConfigureMockMvc
 public class SubeControllerTest {
+
+    private List<Sube> listsube ;
+    private Sube sube ;
     @Autowired
     private MockMvc mockMvc;
+
+    @MockBean
+    private SubeService subeService;
+
     @Autowired
     private ObjectMapper objectMapper;
-    @Test
-    public void contextLoads() throws Exception {
-     //   mockMvc.perform(get("/sube/{id}")
-       //         .contentType(MediaType.APPLICATION_JSON))
-         //       .andExpect(status().isOk());
 
+    @BeforeEach
+    public void setUp() throws Exception {
+        listsube = new ArrayList<Sube>();
+        sube = new Sube();
+        listsube.add(sube);
+        when(subeService.getAllSube()).thenReturn(listsube);
+        when(subeService.getSubeById(1)).thenReturn(sube);
+        when(subeService.putNewSaldo(1, BigDecimal.TEN)).thenReturn(sube);
     }
+
+    @Test
+    public void getAllSubesTest() throws Exception {
+
+        mockMvc.perform( MockMvcRequestBuilders
+                .get("/subes")
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().json(objectMapper.writeValueAsString(listsube)));
+    }
+
+    @Test
+    public void getSubeByIdTest() throws Exception {
+
+        mockMvc.perform( MockMvcRequestBuilders
+                .get("/sube/{id}" , 1)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().json(objectMapper.writeValueAsString(sube)));
+    }
+
+    @Test
+    public void putNewSaldoTest() throws Exception {
+
+        mockMvc.perform( MockMvcRequestBuilders
+                .put("/sube/{id}/cargarSube" , 1)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().json(objectMapper.writeValueAsString(sube)));
+    }
+
+
+
+
+
 }
 
 

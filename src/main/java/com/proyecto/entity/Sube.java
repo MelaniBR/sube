@@ -10,7 +10,7 @@ public class Sube {
     @Column(name = "id")
     private int id;
     @Column(name="balance")
-    private BigDecimal balance ;
+    private BigDecimal balance = BigDecimal.ZERO;
     @Column(name="name")
     private String name ;
     @Column(name="last_Name")
