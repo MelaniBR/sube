@@ -36,16 +36,14 @@ public class SubeControllerTest {
 
     @BeforeEach
     public void setUp() throws Exception {
-        listsube = new ArrayList<Sube>();
+        listsube = new ArrayList<>();
         sube = new Sube();
         listsube.add(sube);
-        when(subeService.getAllSube()).thenReturn(listsube);
-        when(subeService.getSubeById(1)).thenReturn(sube);
-        when(subeService.putNewSaldo(1, BigDecimal.TEN)).thenReturn(sube);
     }
 
     @Test
     public void getAllSubesTest() throws Exception {
+        when(subeService.getAllSube()).thenReturn(listsube);
 
         mockMvc.perform( MockMvcRequestBuilders
                 .get("/subes")
@@ -57,6 +55,7 @@ public class SubeControllerTest {
 
     @Test
     public void getSubeByIdTest() throws Exception {
+        when(subeService.getSubeById(1)).thenReturn(sube);
 
         mockMvc.perform( MockMvcRequestBuilders
                 .get("/sube/{id}" , 1)
@@ -68,19 +67,17 @@ public class SubeControllerTest {
 
     @Test
     public void putNewSaldoTest() throws Exception {
+        when(subeService.putNewSaldo(1, BigDecimal.TEN)).thenReturn(sube);
 
         mockMvc.perform( MockMvcRequestBuilders
                 .put("/sube/{id}/cargarSube" , 1)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content("10")
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().json(objectMapper.writeValueAsString(sube)));
     }
-
-
-
-
-
 }
 
 
