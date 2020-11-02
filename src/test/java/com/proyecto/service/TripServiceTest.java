@@ -31,7 +31,7 @@ public class TripServiceTest {
     public void setUp() {
         lTrip = new ArrayList<Trip>() ;
 
-        MockitoAnnotations.initMocks(this);
+
         trip = new Trip();
         lTrip.add(trip);
 

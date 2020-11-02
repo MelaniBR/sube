@@ -16,7 +16,7 @@ public class TripController {
     private TripService tripService ;
 
 
-    @GetMapping("/trip/{id}")
+    @GetMapping("/trips/{id}")
     List<Trip> get(@PathVariable Integer id ){
 
         return tripService.getTripByIdSube(id);
