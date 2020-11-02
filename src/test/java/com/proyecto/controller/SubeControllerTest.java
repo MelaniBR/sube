@@ -35,7 +35,7 @@ public class SubeControllerTest {
     private ObjectMapper objectMapper;
 
     @BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() {
         listsube = new ArrayList<>();
         sube = new Sube();
         listsube.add(sube);
