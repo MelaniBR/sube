@@ -16,7 +16,7 @@ public class Trip {
     private LocalDateTime date;
     @Id
     @Column(name = "id")
-    
+
     private String id;
 
     public int getSubeId() {
@@ -31,7 +31,8 @@ public class Trip {
         return price;
     }
 
-    public Trip(BigDecimal price, LocalDateTime date) {
+    public Trip(int idSube, BigDecimal price, LocalDateTime date) {
+        this.idSube = idSube;
         this.price = price;
         this.date = date;
     }

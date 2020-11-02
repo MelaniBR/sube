@@ -11,7 +11,6 @@ import java.util.List;
 @Service
 public class SubeService {
 
-
     @Autowired
     private SubeJPARepository subeJPARepository;
 
@@ -25,16 +24,15 @@ public class SubeService {
 
     public Sube putNewSaldo(int id, BigDecimal newBalance) throws Exception {
         Sube sube = subeJPARepository.findById(id);
-        idDontBelongToAnySube(sube,id);
+        idDontBelongToAnySube(sube, id);
         sube.addFounds(newBalance);
         return subeJPARepository.save(sube);
     }
 
-    public void idDontBelongToAnySube(Sube sube,int id) throws Exception {
+    public void idDontBelongToAnySube(Sube sube, int id) throws Exception {
         if (sube == null) {
-            throw new Exception("This ID: " + id +" IS DONT BELONG TO ANY SUBE ");
+            throw new Exception("This ID: " + id + " IS DONT BELONG TO ANY SUBE ");
         }
     }
-
 
 }

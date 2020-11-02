@@ -9,10 +9,12 @@ import java.util.List;
 
 @Service
 public class TripService {
+
     @Autowired
-    private TripJPARepository tripJPARepository ;
+    private TripJPARepository tripJPARepository;
 
     public List<Trip> getTripByIdSube(int id) {
         return tripJPARepository.findByIdSube(id);
     }
+
 }

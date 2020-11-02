@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Repository
 public interface SubeJPARepository extends JpaRepository<Sube, Serializable> {
-    public abstract Sube findById(int id ) ;
 
+   Sube findById(int id);
 
 }
