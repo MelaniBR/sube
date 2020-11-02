@@ -23,7 +23,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class TripControllerTest {
     private List<Trip> listTrip ;
-    private Trip trip ;
 
     @Autowired
     private MockMvc mockMvc;
@@ -35,9 +34,9 @@ public class TripControllerTest {
     private ObjectMapper objectMapper;
 
     @BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() {
         listTrip = new ArrayList<>();
-        trip = new Trip();
+        Trip trip = new Trip();
         listTrip.add(trip);
 
     }
