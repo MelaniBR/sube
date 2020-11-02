@@ -21,9 +21,7 @@ public class SubeController {
 
     @GetMapping("/sube/{id}")
     Sube get(@PathVariable Integer id) throws Exception {
-        if (id == 10) {
-            throw new Exception();
-        }
+
         return subeService.getSubeById(id);
     }
 
