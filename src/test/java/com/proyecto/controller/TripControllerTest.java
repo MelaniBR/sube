@@ -22,7 +22,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class TripControllerTest {
-    private List<Trip> listTrip ;
+
+    private List<Trip> listTrip;
 
     @Autowired
     private MockMvc mockMvc;
@@ -35,6 +36,7 @@ public class TripControllerTest {
 
     @BeforeEach
     public void setUp() {
+
         listTrip = new ArrayList<>();
         Trip trip = new Trip();
         listTrip.add(trip);
@@ -43,6 +45,7 @@ public class TripControllerTest {
 
     @Test
     public void getTripByIdSube() throws Exception {
+
         when(tripService.getTripByIdSube(1)).thenReturn(listTrip);
 
         mockMvc.perform( MockMvcRequestBuilders
@@ -51,5 +54,7 @@ public class TripControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().json(objectMapper.writeValueAsString(listTrip)));
+
     }
+
 }

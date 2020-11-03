@@ -30,6 +30,7 @@ public class SubeService {
     }
 
     public void idDontBelongToAnySube(Sube sube, int id) throws Exception {
+
         if (sube == null) {
             throw new Exception("This ID: " + id + " IS DONT BELONG TO ANY SUBE ");
         }

@@ -58,7 +58,7 @@ public class SubeControllerTest {
         when(subeService.getSubeById(1)).thenReturn(sube);
 
         mockMvc.perform( MockMvcRequestBuilders
-                .get("/sube/{id}" , 1)
+                .get("/subes/{id}" , 1)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -70,7 +70,7 @@ public class SubeControllerTest {
         when(subeService.putNewSaldo(1, BigDecimal.TEN)).thenReturn(sube);
 
         mockMvc.perform( MockMvcRequestBuilders
-                .put("/sube/{id}/cargarSube" , 1)
+                .put("/subes/{id}/cargarSube" , 1)
                     .contentType(MediaType.APPLICATION_JSON)
                     .content("10")
                 .accept(MediaType.APPLICATION_JSON))
