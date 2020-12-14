@@ -13,13 +13,18 @@ public class SubeExceptionHandler {
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<Response> runtimeException(RuntimeException e) {
+
         Response result = new Response(LocalDateTime.now(), "[Exception Response] - Exception: " + e.getMessage(), 500, "Error");
         return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Response> exceptionHandler(Exception e) {
+
         Response result = new Response(LocalDateTime.now(), "[Exception Response] - Exception: " + e.getMessage(), 500, "Error");
         return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+
     }
+
 }

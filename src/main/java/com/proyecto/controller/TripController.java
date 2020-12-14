@@ -1,6 +1,6 @@
 package com.proyecto.controller;
 
-import com.proyecto.data.TripWithoutId;
+import com.proyecto.data.TripDTO;
 import com.proyecto.entity.Trip;
 import com.proyecto.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +21,13 @@ public class TripController {
     private TripService tripService;
 
     @GetMapping("/trips/{id}")
-    List<TripWithoutId> get(@PathVariable Integer id) {
+    List<TripDTO> get(@PathVariable Integer id) {
         List<Trip> listTripWithID = tripService.getTripByIdSube(id);
         return convertTrips(listTripWithID);
     }
 
-    List<TripWithoutId> convertTrips(List<Trip> listTrip) {
-        return listTrip.stream().map(trip -> new TripWithoutId(trip)).collect(Collectors.toList());
+    List<TripDTO> convertTrips(List<Trip> listTrip) {
+        return listTrip.stream().map(trip -> new TripDTO(trip)).collect(Collectors.toList());
 
     }
 

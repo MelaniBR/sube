@@ -20,17 +20,19 @@ public class SubeController {
     @GetMapping
     List<Sube> getAll() {
         return subeService.getAllSube();
+
     }
 
     @GetMapping("/{id}")
-    Sube get(@PathVariable Integer id)  {
-
+    Sube get(@PathVariable Integer id) {
         return subeService.getSubeById(id);
-    }
-    // generico
-    @PutMapping("/{id}/cargarSube")
-    Sube put(@PathVariable Integer id, @RequestBody BigDecimal newBalance) throws Exception {
 
-        return subeService.putNewSaldo(id, newBalance);
     }
+
+    @PutMapping("/{id}/cargarSube")
+    Sube put(@PathVariable Integer id, @RequestBody Sube sube) {
+        return subeService.putNewSaldo(id, sube);
+
+    }
+
 }

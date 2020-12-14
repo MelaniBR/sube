@@ -1,14 +1,16 @@
 package com.proyecto.repository;
 
-import com.proyecto.entity.Sube;
+import com.proyecto.entity.Trip;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Repository
-public interface SubeJPARepository extends JpaRepository<Sube, Serializable> {
+public interface TripRepository extends JpaRepository<Trip, Serializable> {
 
-   Sube findById(int id);
+    List<Trip> findByIdSube(int id);
 
 }
+

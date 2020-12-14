@@ -7,16 +7,18 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
-public class TripWithoutId {
+public class TripDTO {
 
     private int idSube;
     private BigDecimal price;
     private LocalDateTime date;
 
-    public TripWithoutId(Trip trip){
+    public TripDTO(Trip trip) {
+
         idSube = trip.getSubeId();
         price = trip.getPrice();
         date = trip.getDate();
 
     }
+
 }

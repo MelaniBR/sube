@@ -1,7 +1,7 @@
 package com.proyecto.service;
 
 import com.proyecto.entity.Sube;
-import com.proyecto.repository.SubeJPARepository;
+import com.proyecto.repository.SubeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +25,7 @@ public class SubeServiceTest {
     private SubeService subeService;
 
     @MockBean
-    private SubeJPARepository mockRepository;
+    private SubeRepository mockRepository;
 
     @BeforeEach
     public void setUp() {
@@ -45,17 +45,18 @@ public class SubeServiceTest {
     @Test
     public void putNewSaldoInIDThatDontBelongToAnySubeTest() {
         Exception myException = null;
+
         try {
-            subeService.putNewSaldo(1, BigDecimal.TEN);
+            subeService.putNewSaldo(1,sube);
         } catch (Exception e) {
             myException = e;
         }
     assertEquals(myException.getMessage(),"This ID: " + 1 +" IS DONT BELONG TO ANY SUBE ");
     }
     @Test
-    public void putNewSaldoTest() throws Exception {
+    public void putNewSaldoTest() {
         when(mockRepository.findById(1)).thenReturn(sube);
-        subeService.putNewSaldo(1, BigDecimal.TEN);
+        subeService.putNewSaldo(1, sube);
         assertEquals(BigDecimal.TEN,sube.getBalance());
     }
 }

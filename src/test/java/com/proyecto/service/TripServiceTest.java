@@ -1,12 +1,11 @@
 package com.proyecto.service;
 
 import com.proyecto.entity.Trip;
-import com.proyecto.repository.TripJPARepository;
+import com.proyecto.repository.TripRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -25,7 +24,7 @@ public class TripServiceTest {
     private TripService tripService;
 
     @MockBean
-    private TripJPARepository mockRepository;
+    private TripRepository mockRepository;
 
     @BeforeEach
     public void setUp() {

@@ -1,7 +1,7 @@
 package com.proyecto.service;
 
 import com.proyecto.entity.Trip;
-import com.proyecto.repository.TripJPARepository;
+import com.proyecto.repository.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +11,10 @@ import java.util.List;
 public class TripService {
 
     @Autowired
-    private TripJPARepository tripJPARepository;
+    private TripRepository tripRepository;
 
     public List<Trip> getTripByIdSube(int id) {
-        return tripJPARepository.findByIdSube(id);
+        return tripRepository.findByIdSube(id);
     }
 
 }

@@ -4,6 +4,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import com.proyecto.entity.Sube;
 import com.proyecto.service.SubeService;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,6 +34,8 @@ public class SubeControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    Gson gson;
 
     @BeforeEach
     public void setUp() {
@@ -67,12 +70,12 @@ public class SubeControllerTest {
 
     @Test
     public void putNewSaldoTest() throws Exception {
-        when(subeService.putNewSaldo(1, BigDecimal.TEN)).thenReturn(sube);
+        when(subeService.putNewSaldo(1, sube)).thenReturn(sube);
 
         mockMvc.perform( MockMvcRequestBuilders
                 .put("/subes/{id}/cargarSube" , 1)
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content("10")
+                    .content(gson.toJson(sube))
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
